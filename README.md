@@ -1,6 +1,6 @@
 
 # ☆サイト名   
-### clothesgram  
+## clothesgram  
 
 # ☆サイト概要    
 ## ・サイトテーマ  
