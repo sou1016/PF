@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # public投稿関係
   namespace :public do
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    resources :members, only: [:index, :show, :edit, :update]
   end
 
 
