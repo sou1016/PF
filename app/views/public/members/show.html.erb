@@ -3,7 +3,7 @@
 <div>
   <h3><%= @member.name %></h3>
   <%= image_tag @member.get_profile_image(100,100) %>
-  <%= link_to "編集", edit_public_member_path(@post) %>
+  <%= link_to "編集", edit_public_member_path(@member) %>
 </div>
 
 <!--ユーザーの投稿-->

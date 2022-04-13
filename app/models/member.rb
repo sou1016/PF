@@ -6,6 +6,8 @@ class Member < ApplicationRecord
   
   # アソシエーション
   has_many :post, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
  
   # アクティブストレージ
   has_one_attached :profile_image

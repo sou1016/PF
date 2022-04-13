@@ -10,10 +10,20 @@ Rails.application.routes.draw do
   root "public/homes#top"
   get "/about" => "public/homes#about"
 
-  # public投稿関係
+  # 会員
   namespace :public do
-    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+      resources :post_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
+
+    end
     resources :members, only: [:index, :show, :edit, :update]
+  end
+
+  # 管理者
+  namespace :admin do
+    resources :posts, only: [:index, :show]
+    resources :genres, only: [:index, :create, :edit, :update, :destroy]
   end
 
 
