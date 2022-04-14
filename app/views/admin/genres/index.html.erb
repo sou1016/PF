@@ -18,6 +18,9 @@
       <tr>
         <td><%= genres.name %></td>
         <td><%= link_to "編集する", edit_admin_genre_path(genres.id) %></td>
+        <td>
+            <%= link_to "削除する", admin_genre_path(genres.id), method: :delete %>
+        </td>
       </tr>
     <% end %>
   </tbody>

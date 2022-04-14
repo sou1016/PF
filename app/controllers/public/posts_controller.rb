@@ -12,6 +12,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @post = Post.all
+    # @member = ?
   end
 
   def show
@@ -25,8 +26,7 @@ class Public::PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
-    if
-      @post.member_id = current_member.id
+    if @post.member_id = current_member.id
       @post.update(post_params)
       redirect_to public_post_path(@post)
     else

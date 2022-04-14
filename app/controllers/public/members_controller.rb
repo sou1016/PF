@@ -15,16 +15,15 @@ class Public::MembersController < ApplicationController
 
   def update
     @member = Member.find(params[:id])
-    if
-      @member.member_id = current_member.id
+    if @member.id = current_member.id
       @member.update(member_params)
-      redirect_to public_member
+      redirect_to public_member_path(@member)
     end
   end
 
   private
 
-  def user_params
+  def member_params
     params.require(:member).permit(:name, :profile_image)
   end
 
