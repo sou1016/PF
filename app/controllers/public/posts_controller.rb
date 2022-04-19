@@ -11,8 +11,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @post = Post.all
-    # @member = ?
+    @posts = Post.all
   end
 
   def show
@@ -23,7 +22,7 @@ class Public::PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
   end
-  
+
   def update
     @post = Post.find(params[:id])
     if @post.member_id = current_member.id
@@ -32,7 +31,7 @@ class Public::PostsController < ApplicationController
     else
       render :edit
     end
-  end 
+  end
 
   def destroy
     @post = Post.find(params[:id])
@@ -44,6 +43,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :body)
+    params.require(:post).permit(:image, :body, :genre_id)
   end
 end

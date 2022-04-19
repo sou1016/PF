@@ -1,5 +1,3 @@
 class Genre < ApplicationRecord
-  # アソシエーション
-  belongs_to :post, optional: true
-
+  has_many :posts
 end

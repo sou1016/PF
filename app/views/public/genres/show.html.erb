@@ -1,0 +1,20 @@
+<div class="item-index-box">
+  <!-- ジャンル選択のサイドバー -->
+  <div class="item-index">
+    <h3>一覧</h3>
+    <table>
+      <tbody>
+        <tr class="item-box">
+          <% @genre.posts.each do |post| %>
+            <td class="item">
+                <%= link_to public_post_path(post.id) do %>
+                  <%= image_tag post.get_image(150, 150) %><br>
+                <% end %>
+                <p>概要：<%= post.body %></p>
+            </td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

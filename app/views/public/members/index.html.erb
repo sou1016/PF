@@ -1,6 +1,6 @@
 <h1>ユーザー一覧</h1>
 <% @member.each do |member| %>
-  <%= link_to public_members_path(member.id) do %>
+  <%= link_to public_member_path(member.id) do %><br>
     <%= image_tag member.get_profile_image(50, 50) %>
   <% end %>
   <%= member.name %>
