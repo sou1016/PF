@@ -1,13 +1,18 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_member!, except: [:top, :index, :show]
+  before_action :ensure_guest_, only: [:edit, :new]
   def new
     @post = Post.new
   end
 
   def create
     @post = Post.new(post_params)
-    @post.member_id = current_member.id
-    @post.save
-    redirect_to public_posts_path
+    if @post.member_id = current_member.id
+      @post.save
+      redirect_to public_member_path(@post.member.id)
+    else
+      render :new
+    end
   end
 
   def index
@@ -36,7 +41,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to public_posts_path
+    redirect_to public_member_path(@post.member.id)
   end
 
 

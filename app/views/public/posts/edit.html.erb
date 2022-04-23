@@ -1,5 +1,5 @@
 <h1>投稿編集</h1>
-<%= form_with model: @post, url: public_post_path do |f| %>
+<%= form_with model: [:public, @post] do |f| %>
   <h4>画像</h4>
     <%= f.file_field :image %>
   <h4>概要</h4>

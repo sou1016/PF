@@ -1,4 +1,5 @@
 class Admin::PostsController < ApplicationController
+  before_action :ensure_guest_admin
   def index
     @post = Post.all
   end

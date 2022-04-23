@@ -2,12 +2,12 @@ class Public::RelationshipsController < ApplicationController
   # フォローするとき
   def create
     current_member.follow(params[:member_id])
-    redirect_to public_members_path
+    redirect_to request.referer
   end
   # フォロー外すとき
   def destroy
     current_member.unfollow(params[:member_id])
-    redirect_to public_members_path
+    redirect_to request.referer
   end
   # フォロー一覧
   def followings

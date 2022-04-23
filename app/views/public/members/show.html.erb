@@ -1,30 +1,42 @@
-<h1>ユーザー詳細</h1>
-<!--ユーザーの詳細-->
-<tr>
-  <td><%= @member.name %></td>
-  <td><%= image_tag @member.get_profile_image(100,100) %></td>
-  <%= link_to public_member_followings_path(@member.id) do %>
-    <td>フォロー中: <%= @member.followings.count %></td>
-  <% end %>
-  <%= link_to public_member_followers_path(@member.id) do %>
-    <td>フォロワー: <%= @member.followers.count %></td>
-  <% end %>
-  <% if current_member.following?(@member) %>
-    <td><%= link_to "フォロー中", public_member_relationships_path(@member.id), method: :delete %></td>
-  <% else %>
-    <td><%= link_to "フォローする", public_member_relationships_path(@member.id), method: :post %></td>
-  <% end %>
-  <% if @member.name != "guest" %>
-    <td><%= link_to "編集", edit_public_member_path(@member) %></td>
-  <% end %>
-  <td><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></td>
-</tr>
+<div class="container">
+  <div class="row">
+    <!--ユーザーの詳細-->
+    <div class="col-4">
+      <p><%= @member.name %></p>
+      <%= image_tag @member.get_profile_image(100,100) %>
+    </div>
+    <div class="col-8">
+      <%= link_to public_member_followings_path(@member.id), class: "btn btn-light" do %>
+        フォロー中: <%= @member.followings.count %>
+      <% end %>
+      <%= link_to public_member_followers_path(@member.id), class: "btn btn-light" do %>
+        フォロワー: <%= @member.followers.count %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <% if current_member != @member %>
+      <% if current_member.following?(@member) %>
+        <%= link_to "フォロー中", public_member_relationships_path(@member.id), method: :delete, class: "btn btn-dark" %>
+      <% else %>
+        <%= link_to "フォローする", public_member_relationships_path(@member.id), method: :post, class: "btn btn-light" %>
+      <% end %>
+    <% else %>
+      <% if @member.name != "guest" %>
+        <%= link_to "編集", edit_public_member_path(@member), class: "btn btn-secondary" %>
+      <% end %>
+      <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-danger" %>
+    <% end %>
+  </div>
 
-<!--ユーザーの投稿-->
-<% @post.each do |post| %>
-  <%= link_to public_post_path(post.id) do %><br>
-    <%= image_tag post.get_image(150, 150) %>
-  <% end %>
-  <p>概要：<%= post.body %></p>
-  <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
-<% end %>
+  <!--ユーザーの投稿-->
+  <div class="row">
+      <% @post.each do |post| %>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <%= link_to public_post_path(post.id) do %><br>
+            <%= image_tag post.get_image(230, 230) %>
+          <% end %>
+        </div>
+      <% end %>
+  </div>
+</div>
