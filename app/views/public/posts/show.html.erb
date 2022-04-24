@@ -13,11 +13,12 @@
           <p class="card-text">概要：<%= @post.body %></p>
           <span><i class="fas fa-user"></i> : <%= @post.member.name %> ｜ </span>
           <span>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %> | </span>
-          <% unless current_member.name == "guest" %>
+          <% if current_member.name != "guest" %>
             <% if @post.member_id == current_member.id %>
               <span><%= link_to "編集", edit_public_post_path(@post), class: "btn btn-secondary" %> | </span>
               <span><%= link_to "削除", public_post_path(@post), method: :delete, class: "btn btn-danger" %></span>
             <% end %>
+          <% end %>
 
             <!--いいね機能-->
             <p class="favorite-btn"><%= render 'public/favorites/favorite', post: @post %></p>
@@ -29,7 +30,6 @@
                 <%= f.submit "送信" %>
               <% end %>
             </p>
-          <% end %>
           <div class="post-comment">
             <%= render 'public/post_comments/comment', post: @post %>
           </div>
