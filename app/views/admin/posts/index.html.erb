@@ -3,7 +3,7 @@
     <% @posts.each do |post| %>
       <div class="card w-25 mx-auto mt-4 shadow-lg col-lg-3 col-md-6 mb-4">
         <%= link_to public_post_path(post.id) do %>
-          <%= image_tag post.get_image(230, 230), class:"card-img-top"; %>
+          <%= image_tag post.get_image(230, 230), class:"card-img-top d-block mx-auto"; %>
         <% end %>
         <div class="card-body">
           <div class="col-2">

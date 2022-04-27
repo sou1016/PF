@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    attributes:
+      member:
+        name: 名前
+        password: パスワード
+      post:
+        body: 概要
+        image: 画像
+      genre:
+        name: ジャンル名

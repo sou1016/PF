@@ -5,6 +5,10 @@ class Post < ApplicationRecord
   belongs_to :genre
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  
+  # バリデーション
+  validates :body, presence: true
+  validates :image, presence: true
 
   # 検索方法分岐
   def self.looks(search, word)

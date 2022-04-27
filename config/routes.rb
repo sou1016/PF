@@ -16,7 +16,6 @@ Rails.application.routes.draw do
 
   # top.aboutページ
   root "public/homes#top"
-  get "/about" => "public/homes#about"
 
   # 検索
   get "search" => "searches#search"

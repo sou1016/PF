@@ -16,9 +16,11 @@ class Public::MembersController < ApplicationController
 
   def update
     @member = Member.find(params[:id])
-    if @member.id = current_member.id
-      @member.update(member_params)
+    @member.id = current_member.id
+    if @member.update(member_params)
       redirect_to public_member_path(@member)
+    else
+      render :edit
     end
   end
 
@@ -31,7 +33,7 @@ class Public::MembersController < ApplicationController
   def ensure_guest_member
     @member = Member.find(params[:id])
     if @member.name == "guest"
-      redirect_to public_member_path(current_member) , notice: 'ゲストユーザーはプロフィール編集、投稿機能は使用できません。'
+      redirect_to public_member_path(current_member) , notice: 'ゲストユーザーはプロフィール編集を使用できません。'
     end
   end
 

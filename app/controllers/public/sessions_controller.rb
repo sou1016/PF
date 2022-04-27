@@ -1,13 +1,21 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-  
+
   def guest_sign_in
     member = Member.guest
     sign_in member
     redirect_to public_posts_path, notice: 'guestuserでログインしました。'
   end
-  
+
+  def after_sign_in_path_for(resource)
+    public_member_path(current_member)
+  end
+
+  def after_sign_out_path_for(resource)
+    root_path
+  end
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
