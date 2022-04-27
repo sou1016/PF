@@ -34,7 +34,7 @@
       <% @post.each do |post| %>
         <div class="col-lg-3 col-md-6 mb-4">
           <%= link_to public_post_path(post.id) do %><br>
-            <%= image_tag post.get_image(230, 230), class="d-block" %>
+            <%= image_tag post.get_image(230, 230), class: "d-block" %>
           <% end %>
         </div>
       <% end %>
